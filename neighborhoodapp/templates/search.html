@@ -1,0 +1,31 @@
+
+{% load bootstrap5 %}
+{% load static %}
+{% block styles %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'fontawesome/css/all.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}" />
+{% endblock %}
+<div class="header">
+    {% include 'navbar.html'%}
+    <div class="row">
+        {% if results %}
+        <h2>Found {{ results|length }} of searched term {{message}}</h2>
+        {% else %}
+        <h2> Found 0 business for the search term {{message}}</h2>
+        {% endif %}
+
+    </div>
+    <div class="row">
+{% for business in results %}
+<div class="col-md-3 mx-5">
+<div class="card" style="width: 25rem;background-color: #000f40;color: aliceblue;font-family: 'Times New Roman', Times, serif;">
+    <div class="card-body">
+    <h5 class="card-title">{{business.business_name}}</h5>
+    <p class="card-text">{{business.business_email}}</p>
+    </div>
+</div>
+</div>
+{% endfor %}
+</div>
